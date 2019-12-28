@@ -76,7 +76,7 @@ for k = 1:NBFS,
       k, search_key(k), err));
   end
   kernel_2_nedge(k) = sum (indeg(parent >= 0))/2; % Volume/2
-  fprintf(f2, "%.1f %.4f\n", kernel_2_nedge(k), kernel_2_time(k))
+  fprintf(f2, "%.1f %.4f\n", kernel_2_nedge(k), kernel_2_time(k));
 
   tic;
   [parent, d] = kernel_3 (G, search_key(k));
