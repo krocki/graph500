@@ -33,7 +33,7 @@ function output (SCALE, NBFS, NSSSP, kernel_1_time, kernel_2_time, kernel_2_nedg
   k2tmp(K2TEPS > 0) = 1./K2TEPS(K2TEPS > 0);
   k2tmp = k2tmp - 1/S(6);
   S(7) = (sqrt (sum (k2tmp.^2)) / (K2N-1)) * S(6)^2;
-  
+
   printf ("bfs_min_TEPS: %20.17e\n", S(1));
   printf ("bfs_firstquartile_TEPS: %20.17e\n", S(2));
   printf ("bfs_median_TEPS: %20.17e\n", S(3));
@@ -72,7 +72,7 @@ function output (SCALE, NBFS, NSSSP, kernel_1_time, kernel_2_time, kernel_2_nedg
   k3tmp(K3TEPS > 0) = 1./K3TEPS(K3TEPS > 0);
   k3tmp = k3tmp - 1/S(6);
   S(7) = (sqrt (sum (k3tmp.^2)) / (K3N-1)) * S(6)^2;
-  
+
   printf ("sssp_min_TEPS: %20.17e\n", S(1));
   printf ("sssp_firstquartile_TEPS: %20.17e\n", S(2));
   printf ("sssp_median_TEPS: %20.17e\n", S(3));

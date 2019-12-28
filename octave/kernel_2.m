@@ -1,9 +1,9 @@
-function parent = kernel_2 (G, root)
+function parent = kernel_2 (G, root, N)
 %% Compute a breadth-first search tree starting
 %% from vertex root on the graph represented by
 %% the sparse matrix G.
-  
-  N = size (G, 1);
+
+  %N = size (G, 1);
   %% Adjust from zero labels.
   root = root + 1;
   parent = zeros (N, 1);
