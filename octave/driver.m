@@ -17,7 +17,7 @@ num_edges = num_vertices * edgefactor;
 f = fopen(edges_fname, "w");
 fprintf(f, "%d %d\n", num_vertices, num_edges);
 for i=1:1:num_edges
-  fprintf(f, "%d %d %f\n", ijw(1,i)-1, ijw(2,i)-1, ijw(3,i));
+  fprintf(f, "%d %d %f\n", ijw(1,i), ijw(2,i), ijw(3,i));
 end
 fclose(f);
 
