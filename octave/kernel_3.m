@@ -1,10 +1,10 @@
-function [parent, d] = kernel_3 (G, root)
+function [parent, d] = kernel_3 (G, root, N)
   %% Compute the shortest path lengths and parent
   %% tree starting from vertex root on the graph
   %% represented by the sparse matrix G. Every
   %% vertex in G can be reached from root.
 
-  N = size (G, 1);
+  %N = size (G, 1);
   %% Adjust from zero labels.
   root = root + 1;
   d = inf * ones (N, 1);

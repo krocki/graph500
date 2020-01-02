@@ -6,6 +6,9 @@ keys_fname = "keys.dat";
 hist_fname = "hist.dat";
 parent_fname = "parent.dat";
 nedges_fname = "n_edges.dat";
+parent_sssp_fname = "parent_sssp.dat";
+nedges_sssp_fname = "n_edges_sssp.dat";
+parent_sssp2_fname = "parent_d_sssp.dat";
 
 rand ("seed", 103);
 
@@ -58,6 +61,9 @@ fclose(f);
 
 f = fopen(parent_fname, "w");
 f2 = fopen(nedges_fname, "w");
+f3 = fopen(parent_sssp_fname, "w");
+f4 = fopen(nedges_sssp_fname, "w");
+f5 = fopen(parent_sssp2_fname, "w");
 
 for k = 1:NBFS,
   tic;
@@ -79,7 +85,16 @@ for k = 1:NBFS,
   fprintf(f2, "%.1f %.4f\n", kernel_2_nedge(k), kernel_2_time(k));
 
   tic;
-  [parent, d] = kernel_3 (G, search_key(k));
+  [parent, d] = kernel_3 (G, search_key(k), 2^SCALE);
+
+  for p=1:1:length(parent)
+    fprintf(f3, "%d", parent(p))
+    if (length(parent) == p) fprintf(f3, "\n")
+    else
+      fprintf(f3, " ");
+    end
+  end
+  fprintf(f5, "%.5f\n", d);
   kernel_3_time(k) = toc;
   err = validate (parent, ijw, search_key (k), d, true);
   if err <= 0,
@@ -87,8 +102,12 @@ for k = 1:NBFS,
       k, search_key(k), err));
   end
   kernel_3_nedge(k) = sum (indeg(parent >= 0))/2; % Volume/2
+  fprintf(f4, "%.1f %.4f\n", kernel_3_nedge(k), kernel_3_time(k));
 end
 
 fclose(f);
 fclose(f2);
+fclose(f3);
+fclose(f4);
+fclose(f5);
 output (SCALE, NBFS, NBFS, kernel_1_time, kernel_2_time, kernel_2_nedge, kernel_3_time, kernel_3_nedge);
