@@ -85,16 +85,22 @@ for k = 1:NBFS,
   fprintf(f2, "%.1f %.4f\n", kernel_2_nedge(k), kernel_2_time(k));
 
   tic;
+  k
+  search_key(k)
   [parent, d] = kernel_3 (G, search_key(k), 2^SCALE);
-
+  parent
+  d
   for p=1:1:length(parent)
-    fprintf(f3, "%d", parent(p))
-    if (length(parent) == p) fprintf(f3, "\n")
+    fprintf(f3, "%d", parent(p));
+    fprintf(f5, "%.5f", d(p));
+    if (length(parent) == p)
+      fprintf(f5, "\n");
+      fprintf(f3, "\n");
     else
+      fprintf(f5, " ");
       fprintf(f3, " ");
     end
   end
-  fprintf(f5, "%.5f\n", d);
   kernel_3_time(k) = toc;
   err = validate (parent, ijw, search_key (k), d, true);
   if err <= 0,
